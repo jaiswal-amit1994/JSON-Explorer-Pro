@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON Explorer Pro</title>
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <header>
+    <h1>JSON Explorer Pro</h1>
+    <div class="controls">
+      <button id="uploadBtn" class="primary">
+        <span>📁</span> Upload JSON
+      </button>
+      <button id="sampleBtn" class="warning">
+        <span>🧪</span> Samples
+      </button>
+      <input type="file" id="fileInput" accept=".json,application/json">
+    </div>
+  </header>
+
+  <div class="toolbar">
+    <button id="validateBtn" disabled>✓ Validate</button>
+    <button id="formatBtn" disabled>⇅ Format</button>
+    <button id="minifyBtn" disabled>⇲ Minify</button>
+    <button id="pathCopyBtn" disabled>⎘ Copy Path</button>
+    <button id="valueCopyBtn" disabled>⎘ Copy Value</button>
+    <button id="statsBtn" disabled>📊 Stats</button>
+  </div>
+
+  <div class="path-display" id="pathDisplay">
+    No path selected
+  </div>
+
+  <div class="controls">
+    <div class="search">
+      <input type="text" id="searchInput" placeholder="Search in JSON..." disabled>
+    </div>
+    <button id="expandAllBtn" disabled>↙ Expand All</button>
+    <button id="collapseAllBtn" disabled>↗ Collapse All</button>
+    <button id="copyBtn" disabled>⎘ Copy JSON</button>
+    <button id="downloadBtn" disabled>⤓ Download</button>
+  </div>
+
+  <div class="json-viewer" id="jsonViewer">
+    <div class="empty-state">
+      <p>Upload a JSON file or select a sample to explore its structure.</p>
+    </div>
+  </div>
+
+  <div class="status-bar">
+    <div id="fileInfo">No file selected</div>
+    <div id="searchResults"></div>
+    <div id="selectionInfo"></div>
+  </div>
+
+  <div class="notification" id="notification">Copied to clipboard!</div>
+
+  <!-- Context Menu -->
+  <div class="context-menu" id="contextMenu">
+    <div class="context-menu-item" id="cmCopyPath">Copy Path</div>
+    <div class="context-menu-item" id="cmCopyValue">Copy Value</div>
+    <div class="context-menu-divider"></div>
+    <div class="context-menu-item" id="cmExpandAll">Expand All Children</div>
+    <div class="context-menu-item" id="cmCollapseAll">Collapse All Children</div>
+  </div>
+
+  <!-- Sample JSON Modal -->
+  <div class="modal" id="sampleModal">
+    <div class="modal-content">
+      <div class="modal-title">Select Sample JSON</div>
+      <div class="tabs">
+        <div class="tab active" data-tab="common">Common</div>
+        <div class="tab" data-tab="complex">Complex</div>
+        <div class="tab" data-tab="invalid">Invalid</div>
+      </div>
+      <div class="tab-content active" id="common-tab">
+        <button class="sample-item" data-sample="simpleObject">Simple Object</button>
+        <button class="sample-item" data-sample="simpleArray">Simple Array</button>
+        <button class="sample-item" data-sample="nestedObject">Nested Object</button>
+        <button class="sample-item" data-sample="mixedTypes">Mixed Types</button>
+      </div>
+      <div class="tab-content" id="complex-tab">
+        <button class="sample-item" data-sample="largeDataset">Large Dataset</button>
+        <button class="sample-item" data-sample="deeplyNested">Deeply Nested</button>
+        <button class="sample-item" data-sample="apiResponse">API Response</button>
+        <button class="sample-item" data-sample="configFile">Config File</button>
+      </div>
+      <div class="tab-content" id="invalid-tab">
+        <button class="sample-item" data-sample="missingQuote">Missing Quote</button>
+        <button class="sample-item" data-sample="trailingComma">Trailing Comma</button>
+        <button class="sample-item" data-sample="unclosedBracket">Unclosed Bracket</button>
+        <button class="sample-item" data-sample="wrongDataType">Wrong Data Type</button>
+      </div>
+      <div class="modal-actions">
+        <button id="closeSampleModal">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats Modal -->
+  <div class="modal" id="statsModal">
+    <div class="modal-content">
+      <div class="modal-title">JSON Statistics</div>
+      <div class="stats-grid" id="statsGrid">
+        <!-- Filled dynamically -->
+      </div>
+      <div class="validation-results" id="validationResults">
+        <!-- Filled dynamically -->
+      </div>
+      <div class="modal-actions">
+        <button id="closeStatsModal">Close</button>
+      </div>
+    </div>
+  </div>
+
+ <script src="./js/scripts.js"></script>
+</body>
+</html>
